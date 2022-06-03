@@ -1,0 +1,31 @@
+<div class="invoice"> <%= link_to "Download PDF",
+invoice_download_path(@invoice, format: "pdf"),
+target: "_blank",
+class: "download" %>
+  <h1>Envato Invoice</h1>
+ 
+  <h3>To: <%= @invoice.client %></h3>
+  <h3>Date: <%= @invoice.date.strftime("%B %d, %Y") %></h3>
+ 
+  <table>
+    <thead>
+        <tr>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="total">
+          <td style="text-align: right">Total: </td>
+          <td><%= number_to_currency(@invoice.notes) %></span></td>
+        </tr>
+      </tbody>
+  </table>
+ 
+  <% if @invoice.notes %>
+  <div class="notes">
+    <p><strong>Notes:</strong> <%= @invoice.notes %></p>
+  </div>
+  <% end %>
+</div>
